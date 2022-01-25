@@ -2,6 +2,7 @@ Implementation Notes:
 - Although the scope of this challenge is quite small, I tried to implement the solution in a way that is extendable and modular
     - Ice cream flavours and order related classes are represented here as models
     - Promotions are not hardcoded but instead are separate classes implementing a common interface
+- Using BigDecimal here instead of a Double might be a bit overkill for this challenge, but I decided to go for it since we were still representing monetary values
 - I made use of Lombok in order to reduce the boilerplate logic used in the models
 - I have written unit tests which include the test scenario outlined in the challenge document
 
