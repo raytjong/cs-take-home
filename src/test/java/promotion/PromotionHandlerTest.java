@@ -19,7 +19,7 @@ public class PromotionHandlerTest {
 
     @Test
     public void testBuyTwoGetOneFree() {
-        BigDecimal promo = buyTwoGetOneFree.calculateDeduction(BigDecimal.TEN, 3);
+        BigDecimal promo = buyTwoGetOneFree.calculateDeduction(BigDecimal.TEN, 4);
         assertEquals(BigDecimal.TEN, promo);
     }
 

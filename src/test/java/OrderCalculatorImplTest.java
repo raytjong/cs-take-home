@@ -16,6 +16,7 @@ public class OrderCalculatorImplTest {
     private static OrderItem item1;
     private static OrderItem item2;
     private static OrderItem item3;
+    private static OrderItem invalidItem;
 
     @BeforeAll
     public static void setup() {
@@ -28,6 +29,7 @@ public class OrderCalculatorImplTest {
         item1 = new OrderItem(rockyRoad, 1);
         item2 = new OrderItem(cookiesAndCream, 3);
         item3 = new OrderItem(netflixAndChill, 2);
+        invalidItem = new OrderItem(rockyRoad, -2);
     }
 
     @Test
@@ -58,6 +60,14 @@ public class OrderCalculatorImplTest {
         assertEquals(BigDecimal.valueOf(30), total.getOrderTotal());
         assertEquals(BigDecimal.valueOf(5), total.getPromoTotal());
         assertEquals(BigDecimal.valueOf(25), total.getAmountPayable());
+    }
+
+    @Test
+    public void testInvalidSingleOrder() {
+        OrderTotal total = orderCalculator.calculateOrder(invalidItem);
+        assertEquals(BigDecimal.ZERO, total.getOrderTotal());
+        assertEquals(BigDecimal.ZERO, total.getPromoTotal());
+        assertEquals(BigDecimal.ZERO, total.getAmountPayable());
     }
 
     @Test

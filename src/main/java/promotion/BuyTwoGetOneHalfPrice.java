@@ -1,5 +1,7 @@
 package promotion;
 
+import model.OrderTotal;
+
 import java.math.BigDecimal;
 
 public class BuyTwoGetOneHalfPrice implements PromotionHandler {

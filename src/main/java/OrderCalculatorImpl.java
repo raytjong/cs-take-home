@@ -34,6 +34,10 @@ public class OrderCalculatorImpl implements OrderCalculator {
         Promotion promo = flavour.getPromotion();
         BigDecimal price = flavour.getPrice();
 
+        if (isInvalidOrder(price, quantity)) {
+            return new OrderTotal();
+        }
+
         BigDecimal orderTotal = price.multiply(BigDecimal.valueOf(quantity));
         BigDecimal promoTotal = promo == null ?
                 BigDecimal.ZERO :
@@ -52,5 +56,13 @@ public class OrderCalculatorImpl implements OrderCalculator {
                 t1.getPromoTotal().add(t2.getPromoTotal()),
                 t1.getAmountPayable().add(t2.getAmountPayable())
         );
+    }
+
+    private boolean isInvalidOrder(BigDecimal price, int quantity) {
+        return isInvalidPrice(price) || quantity <= 0;
+    }
+
+    private boolean isInvalidPrice(BigDecimal price) {
+        return price.compareTo(BigDecimal.ZERO) <= 0;
     }
 }
